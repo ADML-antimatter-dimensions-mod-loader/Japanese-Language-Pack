@@ -1,12 +1,12 @@
 {
-  "id": "adml.plugin.template",
-  "name": "ADML Plugin Template",
+  "id": "adml.plugin.japanese",
+  "name": "Japanese Language Pack",
   "version": "1.0.0",
   "author": "ADML Developer",
-  "description": "A robust starting template for Antimatter Dimensions MOD Loader (ADML) v1 plugins.",
+  "description": "日本語にするパッケージです",
   "main": "plugin.js",
   "apiVersion": "1",
-  "type": "game-mod",
+  "type": "game-pack",
   "topics": ["adml-plugin"],
   "license": "MIT"
 }
