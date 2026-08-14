@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "1",
+  "plugin": {
+    "id": "adml.plugin.japanese",
+    "name": "Japanese Language Pack",
+    "apiVersion": "1",
+    "description": "日本語にするパッケージです"
+  },
+  "latest": {
+    "version": "1.0.0",
+    "tag": "v1.0.0",
+    "download": "./dist/Japanese_Language_Pack-1.0.0.zip",
+    "releasedAt": "2026-08-14T01:15:20.405Z",
+    "sha256": "82127d6d65909617c41ac4250143d4bc4cf7b65655e729ce25f85fb81a02a584"
+  },
+  "versions": [
+    {
+      "version": "1.0.0",
+      "tag": "v1.0.0",
+      "download": "./dist/Japanese_Language_Pack-1.0.0.zip",
+      "releasedAt": "2026-08-14T01:15:20.405Z",
+      "sha256": "82127d6d65909617c41ac4250143d4bc4cf7b65655e729ce25f85fb81a02a584"
+    }
+  ]
+}
