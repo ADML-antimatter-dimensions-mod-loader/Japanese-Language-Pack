@@ -1,0 +1,70 @@
+name: ADML Build & Root Catalog Release
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Enable Corepack & Install Dependencies
+        run: |
+          corepack enable
+          pnpm install
+
+      - name: Build Plugin & Generate root.json
+        run: |
+          node build-with-root.mjs .
+
+      - name: Configure Git Identity
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Commit and Push dist/ and root.json
+        run: |
+          git add root.json dist/
+          git diff --staged --quiet || git commit -m "Auto-build plugin ZIP and update root.json catalog [skip ci]"
+          git push
+
+      - name: Extract Version for Release
+        id: meta
+        run: |
+          node -e '
+            const fs = require("fs");
+            const manifest = JSON.parse(fs.readFileSync("manifest.json", "utf-8"));
+            console.log("version=" + (manifest.version || "1.0.0"));
+            console.log("name=" + (manifest.name || manifest.id || "Plugin"));
+            console.log("desc=" + (manifest.description || ""));
+          ' >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Release & Upload ZIP
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.meta.outputs.version }}
+          name: "${{ steps.meta.outputs.name }} v${{ steps.meta.outputs.version }}"
+          body: |
+            ### 📦 Plugin Release: ${{ steps.meta.outputs.name }} (v${{ steps.meta.outputs.version }})
+            
+            #### 📝 Description
+            ${{ steps.meta.outputs.desc }}
+            
+            ---
+            *Compatible with ADML API v1. Catalog managed via root.json.*
+          files: dist/*.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

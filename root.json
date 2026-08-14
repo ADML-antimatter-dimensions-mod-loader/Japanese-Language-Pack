@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "1",
+  "plugin": {
+    "id": "adml.plugin.template",
+    "name": "ADML Plugin Template",
+    "apiVersion": "1",
+    "description": "A robust starting template for Antimatter Dimensions MOD Loader (ADML) v1 plugins."
+  },
+  "latest": {
+    "version": "1.0.0",
+    "tag": "v1.0.0",
+    "download": "./dist/ADML_Plugin_Template-1.0.0.zip",
+    "releasedAt": "2026-08-13T14:39:41.517Z",
+    "sha256": "c2b737be92de54a7ef339c002a17f672a3ce6a298bfcbde9ab4e8c863f3b1b4a"
+  },
+  "versions": [
+    {
+      "version": "1.0.0",
+      "tag": "v1.0.0",
+      "download": "./dist/ADML_Plugin_Template-1.0.0.zip",
+      "releasedAt": "2026-08-13T14:39:41.517Z",
+      "sha256": "c2b737be92de54a7ef339c002a17f672a3ce6a298bfcbde9ab4e8c863f3b1b4a"
+    }
+  ]
+}
